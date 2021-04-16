@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="TemplateMo">
+    <link href="https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900&display=swap"
+        rel="stylesheet">
+    <title>Homepage</title>
+    <!--
+
+Lava Landing Page
+
+https://templatemo.com/tm-540-lava-landing-page
+
+-->
+
+    <!-- Additional CSS Files -->
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
+
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/font-awesome.css') }}">
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/templatemo-lava.css') }}">
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/owl-carousel.css') }}">
+
+</head>
+
+<body>
+
+    <!-- ***** Preloader Start ***** -->
+    <div id="preloader">
+        <div class="jumper">
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+    </div>
+    <!-- ***** Preloader End ***** -->
+
+
+    <!-- ***** Header Area Start ***** -->
+    <header class="header-area header-sticky">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <nav class="main-nav">
+                        <!-- ***** Logo Start ***** -->
+                        <a class="logo">
+                            T<span class='logo_middle'>S</span>A
+                        </a>
+                        <!-- ***** Logo End ***** -->
+                        <!-- ***** Menu Start ***** -->
+                        <ul class="nav">
+                            <li class="scroll-to-section"><a href="#welcome" class="menu-item">Home</a></li>
+                            <li class="scroll-to-section"><a href="#about" class="menu-item">Details</a></li>
+                            <li class="scroll-to-section"><a href="#testimonials" class="menu-item">About us</a>
+                                <!-- </li>
+                            <li class="submenu">
+                                <a href="javascript:;">Drop Down</a>
+                                <ul>
+                                    <li><a href="" class="menu-item">About Us</a></li>
+                                    <li><a href="" class="menu-item">Features</a></li>
+                                    <li><a href="" class="menu-item">FAQ's</a></li>
+                                    <li><a href="" class="menu-item">Blog</a></li>
+                                </ul>
+                            </li>
+                            <li class="scroll-to-section"><a href="#contact-us" class="menu-item">Contact Us</a></li>
+                        </ul>
+                        <a class='menu-trigger'>
+                            <span>Menu</span>
+                        </a> -->
+                                <!-- ***** Menu End ***** -->
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </header>
+    <!-- ***** Header Area End ***** -->
+
+
+    <!-- ***** Welcome Area Start ***** -->
+    <div class="welcome-area" id="welcome">
+
+        <!-- ***** Header Text Start ***** -->
+        <div class="header-text">
+            <div class="container">
+                <div class="row">
+                    <div class="left-text col-lg-6 col-md-12 col-sm-12 col-xs-12"
+                        data-scroll-reveal="enter left move 30px over 0.6s after 0.4s">
+                        <h1>Our <em>GOAL</em></h1>
+                        <p>Our project basically focuses on giving you the sentiments of the tweets or hashtags that you
+                            want and then visualize that data into different charts.</p>
+                        <h2 class="search_text">Search username/hashtag here</h2>
+                        <!-- search bar -->
+                        <form action="{{url_for('dashboard')}}" class="search-bar" method="POST">
+                            <input type="search" name="user_hashtag" name="username/hashtag" class="search_box" name="search" pattern=".*\S.*" required>
+                            <button class="search-btn" type="submit">
+                                <i class="fa fa-search" aria-hidden="true"></i>
+                            </button>
+                        </form>
+                        <br>
+                        OR
+                        <br>
+                        <br>
+                        <h3 class="search_text">Type your own text here</h3>
+                        <form name="personal_tweet" class="search-bar" action="{{url_for('indexpage')}}" method="POST">
+                            <input type="text" name="text" class="search_box" pattern=".*\S.*" required>
+                            <button class="search-btn" type="submit">
+                                <span>Check Sentiments</span>
+                            </button>
+                        </form>
+                        <br>
+                        <div class="output">
+                        {% if (results) %}
+                            {% if results == 'POSITIVE' %}
+                                The text entered by you<br> "{{text}}" is <br> <span class='positive_color'>{{results}} 😄</span>    
+                            {% elif results == 'NEUTRAL' %}
+                                The text entered by you<br> "{{text}}" is <br> <span class='neutral_color'>{{results}} 😐</span>
+                            {% else %}
+                            The text entered by you<br> "{{text}}" is <br> <span class='negative_color'>{{results}} ☹️</span>
+                            {% endif %}    
+                        {% endif %}
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- ***** Header Text End ***** -->
+    </div>
+    <!-- ***** Welcome Area End ***** -->
+
+    <!-- ***** Features Big Item Start ***** -->
+    <section class="section" id="about">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 col-md-6 col-sm-12 col-xs-12"
+                    data-scroll-reveal="enter left move 30px over 0.6s after 0.4s">
+                    <div class="features-item">
+                        <div class="features-icon">
+                            <h2>01</h2>
+                            <img src="{{ url_for('static', filename='images/Group 42.png') }}" alt="">
+                            <h4>What is Sentiment Analysis?</h4>
+                            <p>Sentiment Analysis is the process of determining whether a piece of writing is positive,
+                                negative or neutral. Sentiment analysis helps data analysts within large enterprises
+                                gauge public opinion, conduct nuanced market research, monitor brand and product
+                                reputation, and understand customer experiences.</p>
+                            <!-- <a href="#testimonials" class="main-button">
+                                Read More -->
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 col-sm-12 col-xs-12"
+                    data-scroll-reveal="enter bottom move 30px over 0.6s after 0.4s">
+                    <div class="features-item">
+                        <div class="features-icon">
+                            <h2>02</h2>
+                            <img src="{{ url_for('static', filename='images/lightbulb.png') }}" alt="">
+                            <h4>Why to use Sentiment Analysis</h4>
+                            <p>Sentiment analysis is extremely useful in social media monitoring as it allows us to gain
+                                an overview of the wider public opinion behind certain topics. Being able to quickly see
+                                the sentiment behind everything from forum posts to news articles means being better
+                                able to strategise and plan for the future.</p>
+                            <!-- <a href="#testimonials" class="main-button">
+                                Discover More -->
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 col-sm-12 col-xs-12"
+                    data-scroll-reveal="enter right move 30px over 0.6s after 0.4s">
+                    <div class="features-item">
+                        <div class="features-icon">
+                            <h2>03</h2>
+                            <img src="{{ url_for('static', filename='images/Icons.png') }}" alt="">
+                            <h4>Why is it performed on Twitter?</h4>
+                            <p>Companies use Twitter Sentiment Analysis to develop their business strategies, to assess
+                                customers' feelings towards products or brand, how people respond to their campaigns or
+                                product launches and also why consumers are not buying certain products. It really helps
+                                them to grow their business efficiently.</p>
+                            <!-- <a href="#testimonials" class="main-button">
+                                More Detail
+                            </a> -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- ***** Features Big Item End ***** -->
+
+    <div class="left-image-decor"></div>
+
+    <div class="right-image-decor"></div>
+
+    <!-- ***** Testimonials Starts ***** -->
+    <section class="section" id="testimonials">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 offset-lg-2">
+                    <div class="center-heading">
+                        <h2>OUR TEAM</h2>
+                        <!-- <p>Suspendisse vitae laoreet mauris. Fusce a nisi dapibus, euismod purus non, convallis odio.
+                            Donec vitae magna ornare, pellentesque ex vitae, aliquet urna.</p> -->
+                    </div>
+                </div>
+                <div class="col-lg-10 col-md-12 col-sm-12 mobile-bottom-fix-big"
+                    data-scroll-reveal="enter left move 30px over 0.6s after 0.4s">
+                    <div class="owl-carousel owl-theme">
+                        <div class="item service-item">
+                            <div class="author">
+                                <i><img src="{{ url_for('static', filename='images/Amish.png') }}" alt="Author One"></i>
+                            </div>
+                            <div class="testimonial-content">
+                                <ul class="stars">
+                                    <li><i class="fa fa-star"></i></li>
+                                    <li><i class="fa fa-star"></i></li>
+                                    <li><i class="fa fa-star"></i></li>
+                                    <li><i class="fa fa-star"></i></li>
+                                    <li><i class="fa fa-star"></i></li>
+                                </ul>
+                                <h4>Amish Prajapati</h4>
+                                <p>“I am a hardworking Software Engineer with an hunger to learn new things and can
+                                    adapt myself according to the situations.”</p>
+                            </div>
+                        </div>
+                        <div class="item service-item">
+                            <div class="author">
+                                <i><img src="{{ url_for('static', filename='images/Bhavik.png') }}"
+                                        alt="Second Author"></i>
+                            </div>
+                            <div class="testimonial-content">
+                                <ul class="stars">
+                                    <li><i class="fa fa-star"></i></li>
+                                    <li><i class="fa fa-star"></i></li>
+                                    <li><i class="fa fa-star"></i></li>
+                                    <li><i class="fa fa-star"></i></li>
+                                    <li><i class="fa fa-star"></i></li>
+                                </ul>
+                                <h4>Bhavik Wadiya</h4>
+                                <p>“I am a Software Developer who is always looking for an opportunities to learn new things”</p>
+                                <!-- <span>#</span> -->
+                            </div>
+                        </div>
+                        <div class="item service-item">
+                            <div class="author">
+                                <i><img src="{{ url_for('static', filename='images/Sarita.png') }}"
+                                        alt="Author Third"></i>
+                            </div>
+                            <div class="testimonial-content">
+                                <ul class="stars">
+                                    <li><i class="fa fa-star"></i></li>
+                                    <li><i class="fa fa-star"></i></li>
+                                    <li><i class="fa fa-star"></i></li>
+                                    <li><i class="fa fa-star"></i></li>
+                                    <li><i class="fa fa-star"></i></li>
+                                </ul>
+                                <h4>Sarita Shetty</h4>
+                                <p>"I am ambitious and driven. I thrive on challenge and constantly set goals for myself, so I have something to strive toward."</p>
+                                <!-- <span>System Admin</span> -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- ***** Testimonials Ends ***** -->
+
+    <!-- jQuery -->
+    <script src="{{ url_for('static', filename='js/jquery-2.1.0.min.js') }}"></script>
+
+    <!-- Bootstrap -->
+    <script src="{{ url_for('static', filename='js/popper.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
+
+    <!-- Plugins -->
+    <script src="{{ url_for('static', filename='js/owl-carousel.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/scrollreveal.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/waypoints.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/jquery.counterup.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/imgfix.min.js') }}"></script>
+
+    <!-- Global Init -->
+    <script src="{{ url_for('static', filename='js/custom.js') }}"></script>
+
+</body>
+
+</html>

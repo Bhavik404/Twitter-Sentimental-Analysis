@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+      integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/dashboard.css') }}" />
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <script type="text/javascript" src="https://cdn.fusioncharts.com/fusioncharts/latest/fusioncharts.js"></script>
+    <script type="text/javascript" src="https://cdn.fusioncharts.com/fusioncharts/latest/themes/fusioncharts.theme.fusion.js"></script>
+    <title>TSA Dashboard</title>
+    
+  </head>
+  <body id="body">
+    <div class="container">
+      <!-- <nav class="navbar">
+        <p>Dashboard</p>
+      </nav> -->
+
+      <main>
+        <div class="main__container">
+          <!-- MAIN TITLE STARTS HERE -->
+<!-- Here we can add username/hashtag which is entered by the user. -->
+          <div class="main__title">
+            <img src="assets/hello.svg" alt="" />
+            <div class="main__greeting">
+              <h1>Welcome to Dashboard!!</h1>
+              <p>Showing the results of #</p>
+            </div>
+          </div>
+
+          <!-- MAIN TITLE ENDS HERE -->
+
+          <!-- MAIN CARDS STARTS HERE -->
+          <div class="main__cards">
+            <div class="table_wrapper">
+              <table class="content-table">
+                <thead>
+                  <tr>
+                    <th>Tweets</th>
+                    <th>Sentiments</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {% for i in tweets %}
+                    <tr>
+                      <td>{{i}}</td>
+                      <!-- <td>{{predictions[loop.index0]}}</td> -->
+                      {% if predictions[loop.index0]=='POSITIVE' %}
+                        <td class="result"><span class="positive_color">{{predictions[loop.index0]}} 😄</span></td>
+                      {% elif predictions[loop.index0]=='NEUTRAL' %}
+                        <td class="result"><span class="neutral_color">{{predictions[loop.index0]}} 😐</span></td>
+                      {%else%}
+                        <td class="result"><span class="negative_color">{{predictions[loop.index0]}} ☹️</span></td>
+                      {% endif %}
+                    </tr>
+                  {% endfor %}
+                  <!-- <tr>
+                    <td>This is the first tweet this is just for checking if table is working perfectly</td>
+                    <td>Positive</td>
+                  </tr>
+                  <tr>
+                    <td>This is the first tweet this is just for checking if table is working perfectly</td>
+                    <td>Positive</td>
+                  </tr>
+                  <tr>
+                    <td>This is the first tweet this is just for checking if table is working perfectly</td>
+                    <td>Positive</td>
+                  </tr>
+                  <tr>
+                    <td>This is the first tweet this is just for checking if table is working perfectly</td>
+                    <td>Positive</td>
+                  </tr>
+                  <tr>
+                    <td>This is the first tweet this is just for checking if table is working perfectly</td>
+                    <td>Positive</td>
+                  </tr>    -->
+                </tbody>
+              </table>
+            </div>
+            <!-- <div class="card"> -->
+            <!-- <i
+              class="fa fa-user-o fa-2x text-lightblue"    // logo
+              aria-hidden="true"
+            ></i> -->
+              
+                
+                
+              <!-- <div class="card_inner"> -->
+                <!-- <p class="text-primary-p">Number of Subscribers</p>
+                <span class="font-bold text-title">578</span> -->
+                
+              <!-- </div> -->
+            <!-- </div> -->
+
+            <div class="card">
+              <div id="apex_pie_chart"></div>
+            </div>
+
+            <div class="card">
+              <div class="card_inner">
+                <div id="apex_doughnut_chart"></div>
+              </div>
+            </div>
+          </div>
+          <!-- MAIN CARDS ENDS HERE -->
+
+          <!-- Big space for line chart -->
+          <div class="line_chart">
+            <div id="apex_line_chart"></div>
+          </div>
+
+          <!-- CHARTS STARTS HERE -->
+          <div class="charts">
+            <div class="charts__left">
+              <div class="charts__left__title">
+                <div>
+                  <h1>Bar chart for sentiments of recent month(March 21)</h1>
+                </div>
+              </div>
+              <div id="apex_bar_chart"></div>
+            </div>
+
+            <div class="charts__right">
+              <div class="charts__right__title">
+                <p>Word Cloud</p>
+              </div>
+              <div id="tagcloud"></div>
+
+              <div class="charts__right__cards">                
+                <!-- <div class="card1">
+                  <h1>Income</h1>
+                  <p>$75,300</p>
+                </div> -->
+
+                <!-- <div class="card2">
+                  <h1>Sales</h1>
+                  <p>$124,200</p>
+                </div> -->
+
+                <!-- <div class="card3">
+                  <h1>Users</h1>
+                  <p>3900</p>
+                </div> -->
+
+                <!-- <div class="card4">
+                  <h1>Orders</h1>
+                  <p>1881</p>
+                </div> -->
+              </div>
+            </div>
+          </div>
+          <!-- CHARTS ENDS HERE -->
+          <!-- LAST 2 CHARTS STARTS -->
+          <div class="charts">
+            <div class="charts__left">
+              <div class="charts__left__title">
+                <div>
+                  <h1>Top 10 most used words</h1>
+                </div>
+              </div>
+              <div id="top10"></div>
+            </div>
+
+            <div class="charts__right">
+              <div class="charts__left__title">
+                <div>
+                  <h1>Top Oragnizations Mentioned</h1>
+                </div>
+              </div>
+              <div id="toporg"></div>
+            </div>
+          </div>
+          <!-- LAST 2 CHARTS END -->
+        </div>
+      </main>
+    </div>
+    <script type="text/javascript">
+      var pie_data = {{pie_data}};
+      var Positive_linechart = {{Positive_linechart}};
+      var Neutral_linechart = {{Neutral_linechart}};
+      var Negative_linechart = {{Negative_linechart}};
+      var months = {{months | tojson}};
+      var cloud = {{cloud | tojson}};
+      var top10words = {{top10words | tojson}};
+      var top10words_count = {{top10words_count}};
+      var orgs = {{orgs | tojson}};
+      var orgs_count = {{orgs_count}};
+      var positive_barchart = {{positive_barchart}};
+      var neutral_barchart = {{neutral_barchart}};
+      var negative_barchart = {{negative_barchart}};
+      // var categories = {{categories}};
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.js"></script>
+    <script src="https://cdn.anychart.com/samples/tag-cloud/the-old-man-and-the-sea/ignore-items.js"></script>
+    <script src="https://code.jquery.com/jquery-latest.min.js"></script>
+    <script src="https://cdn.anychart.com/releases/v8/js/anychart-base.min.js"></script>
+    <script src="https://cdn.anychart.com/releases/v8/js/anychart-ui.min.js"></script>
+    <script src="https://cdn.anychart.com/releases/v8/js/anychart-exports.min.js"></script>
+    <script src="https://cdn.anychart.com/releases/v8/js/anychart-tag-cloud.min.js"></script>
+    <script src="{{ url_for('static', filename='js/dashboard.js') }}"></script>
+  </body>
+</html>

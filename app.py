@@ -39,7 +39,7 @@ def get_tweets(username):
     hour = []
     months = []
     day = []
-    for tweet in tweepy.Cursor(api.user_timeline, id=username,result_type="recent", include_entities=True, exclude_replies=True, exclude_retweets=True, lang="en", tweet_mode='extended').items(150):
+    for tweet in tweepy.Cursor(api.user_timeline, id=username,result_type="recent", include_entities=True, exclude_replies=True, exclude_retweets=True, lang="en", tweet_mode='extended').items(100):
         tmp.append(tweet.full_text)
         time = tweet.created_at
         hour.append(time.strftime("%I %p"))
@@ -205,7 +205,7 @@ def dashboard():
         # print(day)
         # print(prediction)
         for i in range(len(months)):
-            if months[i] == "March 21":
+            if months[i] == "April 21":
                 lst.append(prediction[i])
                 march_days.append(day[i])
         # print(lst)
@@ -343,7 +343,8 @@ def dashboard():
                             orgs_count = orgs_count,
                             positive_barchart = positive_barchart,
                             neutral_barchart = neutral_barchart,
-                            negative_barchart = negative_barchart)
+                            negative_barchart = negative_barchart,
+                            username = data)
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run(debug=False)

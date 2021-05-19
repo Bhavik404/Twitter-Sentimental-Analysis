@@ -1,5 +1,1 @@
 stopwords
-word_tokenize
-WordNetLemmatizer
-PorterStemmer
-SnowballStemmer
